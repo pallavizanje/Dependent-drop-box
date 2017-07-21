@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .hide {
+                display: none;
+            } 
+
+            .show {
+                display: block;
+            }  
+        </style>
+    </head>
+
+    <body>
+        <select id="roomsRooms">
+            <option value="1">Volvo</option>
+            <option value="2">Saab</option>
+            <option value="3">Mercedes</option>
+            <option value="4">Audi</option>
+        </select>
+
+        <div class="hide" data-rooms="1">
+            div one
+        </div>
+
+        <div class="hide" data-rooms="2">
+            div two
+        </div>
+
+        <div class="hide" data-rooms="3">
+            div three
+        </div>
+
+        <div class="hide" data-rooms="4">
+            div four
+        </div>
+
+       <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('#roomsRooms').on('change', function(e) {
+                    let roomChoice = $(this).val();
+                    let roomNumbersLength = $('#roomsRooms option').length;
+
+                    console.log(roomNumbersLength);
+                
+                    for (var j = 1; j <= roomChoice; j++) {
+                        $('[data-rooms="' + j + '"]').addClass('show').removeClass('hide');
+                    }
+
+                    if (roomChoice < roomNumbersLength){
+                        for(let i = roomNumbersLength; i > roomChoice; i--){
+                            $('[data-rooms="' + i + '"]').removeClass('show').addClass('hide');
+                        }
+                    }
+                
+                    e.preventDefault();
+                });
+            });  
+        </script>
+    </body>
+</html>
